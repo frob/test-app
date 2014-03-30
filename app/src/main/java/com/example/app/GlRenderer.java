@@ -18,12 +18,7 @@ public class GlRenderer implements Renderer {
 
   /** Constructor to set the handed over context */
   public GlRenderer() {
-    this.ball = new Rectangle(
-        -1.0f, -1.0f,  0.0f,        // V1 - bottom left
-        -1.0f,  1.0f,  0.0f,        // V2 - top left
-        1.0f, -1.0f,  0.0f,        // V3 - bottom right
-        1.0f,  1.0f,  0.0f         // V4 - top right
-    );
+    this.ball = new Rectangle(2.0f, 1.0f);
     //this.paddle1 = new Rectangle();
     //this.paddle2 = new Rectangle();
   }
