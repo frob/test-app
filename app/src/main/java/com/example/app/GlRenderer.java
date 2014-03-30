@@ -12,11 +12,20 @@ import android.opengl.GLSurfaceView.Renderer;
  */
 public class GlRenderer implements Renderer {
 
-  private Square square;
+  private Rectangle ball;
+  //private Rectangle paddle1;
+  //private Rectangle paddle2;
 
   /** Constructor to set the handed over context */
   public GlRenderer() {
-    this.square = new Square();
+    this.ball = new Rectangle(
+        -1.0f, -1.0f,  0.0f,        // V1 - bottom left
+        -1.0f,  1.0f,  0.0f,        // V2 - top left
+        1.0f, -1.0f,  0.0f,        // V3 - bottom right
+        1.0f,  1.0f,  0.0f         // V4 - top right
+    );
+    //this.paddle1 = new Rectangle();
+    //this.paddle2 = new Rectangle();
   }
 
   @Override
@@ -32,7 +41,7 @@ public class GlRenderer implements Renderer {
     // is the same as moving the camera 5 units away
 		gl.glScalef(0.5f, 0.5f, 0.5f);			// scale the square to 50%
     // otherwise it will be too large
-    square.draw(gl);						// Draw the square
+    ball.draw(gl);						// Draw the square
 
   }
 
