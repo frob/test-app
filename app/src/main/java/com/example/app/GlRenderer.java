@@ -13,14 +13,14 @@ import android.opengl.GLSurfaceView.Renderer;
 public class GlRenderer implements Renderer {
 
   private Rectangle ball;
-  //private Rectangle paddle1;
-  //private Rectangle paddle2;
+  private Rectangle paddle1;
+  private Rectangle paddle2;
 
   /** Constructor to set the handed over context */
   public GlRenderer() {
-    this.ball = new Rectangle(2.0f, 1.0f);
-    //this.paddle1 = new Rectangle();
-    //this.paddle2 = new Rectangle();
+    this.ball = new Rectangle(0.5f, 0.5f);
+    this.paddle1 = new Rectangle(1.25f, 0.25f);
+    this.paddle2 = new Rectangle(1.25f, 0.25f);
   }
 
   @Override
@@ -37,7 +37,8 @@ public class GlRenderer implements Renderer {
 		gl.glScalef(0.5f, 0.5f, 0.5f);			// scale the square to 50%
     // otherwise it will be too large
     ball.draw(gl);						// Draw the square
-
+    paddle1.draw(gl);						// Draw the square
+    paddle2.draw(gl);						// Draw the square
   }
 
   @Override
