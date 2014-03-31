@@ -3,6 +3,7 @@ package com.example.app;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
+import android.opengl.GLES20;
 import android.opengl.GLU;
 import android.opengl.GLSurfaceView.Renderer;
 
@@ -26,7 +27,7 @@ public class GlRenderer implements Renderer {
   @Override
   public void onDrawFrame(GL10 gl) {
     // clear Screen and Depth Buffer
-    gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
+    GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);
 
     // Reset the Modelview Matrix
     gl.glLoadIdentity();

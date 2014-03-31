@@ -1,6 +1,9 @@
 package com.example.app;
 
 import android.app.Activity;
+import android.app.ActivityManager;
+import android.content.Context;
+import android.content.pm.ConfigurationInfo;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.view.Window;
@@ -16,20 +19,21 @@ public class Run extends Activity {
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    // requesting to turn the title OFF
     requestWindowFeature(Window.FEATURE_NO_TITLE);
     // making it full screen
-    getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+    getWindow().setFlags(
+        WindowManager.LayoutParams.FLAG_FULLSCREEN,
         WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-    // Initiate the Open GL view and
-    // create an instance with this activity
-    glSurfaceView = new GLSurfaceView(this);
-
-    // set our renderer to be the main renderer with
-    // the current activity context
-    glSurfaceView.setRenderer(new GlRenderer());
-    setContentView(glSurfaceView);
+    if(hasGLES20()) {
+      glSurfaceView = GLSurfaceView(this);
+      glSurfaceView.setEGLContextClientVersion(2);
+      glSurfaceView.setPreserveEGLContextOnPause(true);
+      glSurfaceView.setRenderer(new GlRenderer());
+    }
+    else {
+      // Tell them to buy new phone. 2.3 is the IE of Android
+    }
   }
 
   /**
@@ -48,6 +52,17 @@ public class Run extends Activity {
   protected void onPause() {
     super.onPause();
     glSurfaceView.onPause();
+  }
+
+  /**
+   * Check for support for OpenGLES2.0
+   * @return boolean
+   */
+  private boolean hasGLES20() {
+    ActivityManager am = (ActivityManager)
+        getSystemService(Context.ACTIVITY_SERVICE);
+    ConfigurationInfo info = am.getDeviceConfigurationInfo();
+    return info.reqGlEsVersion >= 0x20000;
   }
 
 }
