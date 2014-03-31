@@ -1,10 +1,12 @@
 package com.example.app;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.ConfigurationInfo;
 import android.opengl.GLSurfaceView;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
@@ -13,8 +15,8 @@ public class Run extends Activity {
 
   /** The OpenGL view */
   private GLSurfaceView glSurfaceView;
+  private GLSurfaceView casper;
 
-  /** Called when the activity is first created. */
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -29,7 +31,7 @@ public class Run extends Activity {
       glSurfaceView = new GLSurfaceView(this);
       glSurfaceView.setEGLContextClientVersion(2);
       glSurfaceView.setPreserveEGLContextOnPause(true);
-      glSurfaceView.setRenderer(new GlRenderer());
+      glSurfaceView.setRenderer(new Gl20Renderer());
     }
     else {
       // Tell them to buy new phone. 2.3 is the IE of Android
@@ -42,7 +44,7 @@ public class Run extends Activity {
   @Override
   protected void onResume() {
     super.onResume();
-    glSurfaceView.onResume();
+    casper.onResume();
   }
 
   /**
@@ -51,7 +53,7 @@ public class Run extends Activity {
   @Override
   protected void onPause() {
     super.onPause();
-    glSurfaceView.onPause();
+    casper.onPause();
   }
 
   /**
