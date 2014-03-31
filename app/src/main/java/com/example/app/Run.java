@@ -44,7 +44,9 @@ public class Run extends Activity {
   @Override
   protected void onResume() {
     super.onResume();
-    casper.onResume();
+    if(casper != null) {
+      casper.onResume();
+    }
   }
 
   /**
@@ -53,7 +55,10 @@ public class Run extends Activity {
   @Override
   protected void onPause() {
     super.onPause();
-    casper.onPause();
+    if(casper != null) {
+      casper.onPause();
+    }
+
   }
 
   /**
