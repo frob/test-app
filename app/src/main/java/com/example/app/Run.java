@@ -26,7 +26,7 @@ public class Run extends Activity {
         WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
     if(hasGLES20()) {
-      glSurfaceView = GLSurfaceView(this);
+      glSurfaceView = new GLSurfaceView(this);
       glSurfaceView.setEGLContextClientVersion(2);
       glSurfaceView.setPreserveEGLContextOnPause(true);
       glSurfaceView.setRenderer(new GlRenderer());
